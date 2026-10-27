@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Long Way Down | Deep-Sea Exploration</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#04121c;--foam:#e9f7f4;--mist:#a8cdd3;--glow:#7cf5e0;--amber:#ffb454;--line:rgba(233,247,244,.18);--card:rgba(233,247,244,.06);
+--sans:'Bricolage Grotesque',system-ui,sans-serif;--serif:'Newsreader',Georgia,serif;color-scheme:dark;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:#1678a0;color:var(--foam);font:1.125rem/1.65 var(--serif);overflow-x:hidden}
+h1,h2,h3,.sans{font-family:var(--sans)}
+a{color:var(--glow)}
+:focus-visible{outline:3px solid var(--amber);outline-offset:3px}
+.wrap{width:min(1100px,100% - 2.5rem);margin-inline:auto;padding-right:0}
+@media(min-width:1000px){.wrap{margin-left:max(2.5rem,calc(50% - 600px))}}
+p{max-width:62ch}
+/* hero */
+.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden}
+#sea{position:absolute;inset:0;width:100%;height:100%}
+.hero .wrap{position:relative;padding-bottom:12vh}
+h1{font-size:clamp(2.8rem,9vw,7.6rem);line-height:.92;letter-spacing:-.035em;font-weight:800;margin:0 0 1.5rem;max-width:11ch}
+.lead{font-size:1.3rem;color:var(--foam)}
+.btn{display:inline-block;font:600 1rem var(--sans);background:var(--amber);color:#2a1700;border:0;border-radius:999px;padding:.9rem 1.6rem;text-decoration:none;cursor:pointer;margin-top:.8rem}
+.btn:hover{background:#ffc87c}
+/* facts */
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2rem;padding:5rem 0;border-top:1px solid var(--line)}
+.facts b{display:block;font:800 clamp(2.6rem,6vw,4.4rem)/1 var(--sans);letter-spacing:-.03em}
+.facts span{color:var(--mist);font-size:1rem;display:block;margin-top:.4rem;max-width:26ch}
+h2{font-size:clamp(2rem,5vw,3.6rem);line-height:1;letter-spacing:-.03em;margin:0 0 1.2rem;font-weight:700}
+section{position:relative}
+.pad{padding:5rem 0}
+/* oceans */
+.tabs{display:flex;flex-wrap:wrap;gap:.5rem;margin:1.5rem 0}
+.tab,.chip{font:600 .98rem var(--sans);color:var(--foam);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:.55rem 1.1rem;cursor:pointer}
+.tab:hover,.chip:hover{border-color:var(--glow)}
+.tab[aria-selected=true],.chip[aria-pressed=true]{background:var(--glow);color:#032a26;border-color:var(--glow)}
+.panel{border:1px solid var(--line);background:var(--card);border-radius:18px;padding:1.6rem;max-width:760px}
+.bar{display:grid;grid-template-columns:7.5rem 1fr 6rem;align-items:center;gap:1rem;font:500 .95rem var(--sans);margin:.9rem 0}
+.track{height:12px;border-radius:6px;background:rgba(255,255,255,.1);overflow:hidden}
+.fill{height:100%;background:var(--glow);border-radius:6px;transition:width .6s cubic-bezier(.2,.8,.2,1)}
+.bar em{font-style:normal;text-align:right}
+/* zones */
+.zone{min-height:92vh;display:flex;align-items:center;padding:5rem 0;border-top:1px solid var(--line)}
+.zone .range{font:600 1rem var(--sans);color:var(--amber);margin-bottom:.6rem}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem;margin:1.4rem 0 .8rem}
+.note{min-height:4.5em;max-width:56ch;border-left:3px solid var(--glow);padding-left:1rem;margin:0}
+.stat{display:flex;gap:1.6rem;flex-wrap:wrap;font:500 .98rem var(--sans);color:var(--mist);margin-top:1.2rem}
+.stat b{color:var(--foam)}
+/* lab */
+input[type=range]{width:100%;max-width:760px;accent-color:var(--amber);height:2rem}
+.readout{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;max-width:760px;margin:1rem 0}
+.readout div{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:1rem}
+.readout b{display:block;font:800 2rem/1.1 var(--sans)}
+.readout small{color:var(--mist);font:500 .9rem var(--sans)}
+/* care */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.2rem}
+.grid div{border-top:2px solid var(--glow);padding-top:1rem}
+.grid h3{margin:0 0 .4rem;font-size:1.3rem}
+.grid p{margin:0;font-size:1.02rem}
+footer{padding:4rem 0 6rem;color:var(--mist);font-size:.95rem;border-top:1px solid var(--line)}
+/* gauge */
+#gauge{position:fixed;z-index:20;right:1rem;top:50%;transform:translateY(-50%);width:150px;background:rgba(2,10,18,.72);backdrop-filter:blur(8px);border:1px solid var(--line);border-radius:16px;padding:.9rem 1rem;font-family:var(--sans)}
+#gauge .d{font-size:2.3rem;font-weight:800;line-height:1;letter-spacing:-.03em}
+#gauge .u{font-size:.8rem;color:var(--mist);margin-bottom:.6rem}
+#gauge dl{margin:0;font-size:.85rem}
+#gauge dt{color:var(--mist);margin-top:.5rem}
+#gauge dd{margin:0;font-weight:600}
+#meter{height:70px;width:6px;border-radius:3px;background:rgba(255,255,255,.15);position:absolute;left:-14px;top:50%;transform:translateY(-50%)}
+#meter i{position:absolute;left:0;top:0;width:100%;background:var(--amber);border-radius:3px;height:0}
+@media(max-width:999px){
+#gauge{top:auto;bottom:calc(.6rem + env(safe-area-inset-bottom,0px));right:.6rem;left:.6rem;transform:none;width:auto;display:grid;grid-template-columns:auto 1fr;gap:.2rem 1rem;align-items:center;padding:.6rem .9rem}
+#gauge dl{display:flex;gap:1rem;flex-wrap:wrap}#gauge dt{display:none}#gauge dd{margin:0}#gauge .d{font-size:1.6rem}#gauge .u{margin:0;display:none}#meter{display:none}
+.bar{grid-template-columns:5.5rem 1fr 4.8rem}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.fill{transition:none}}
+
+/* ---------- deep-ocean upgrade ---------- */
+:root{--aura:rgba(62,220,255,.22);--glass:rgba(3,22,38,.72)}
+body{background:#061b2a;transition:background-color .45s}
+.panel,.readout div,.grid>div,.species-card,.dash-card,.sim-shell,.impact-box{box-shadow:0 12px 34px rgba(0,0,0,.22),0 0 28px var(--aura);backdrop-filter:blur(12px)}
+.hero:after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 70% 35%,rgba(83,230,255,.18),transparent 45%),linear-gradient(0deg,rgba(1,12,23,.35),transparent 55%)}
+.hero .wrap{z-index:1}
+.glow-title{text-shadow:0 0 28px rgba(124,245,224,.28)}
+.section-kicker{font:700 .82rem var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--glow);margin-bottom:.8rem}
+.sim-shell,.dash-card,.impact-box{border:1px solid rgba(124,245,224,.25);background:linear-gradient(145deg,rgba(12,56,78,.78),rgba(2,17,30,.9));border-radius:22px;padding:1.3rem;margin-top:1.5rem}
+.sim-layout{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(220px,.8fr);gap:1.3rem;align-items:stretch}
+#bathymetry{display:block;width:100%;height:320px;border-radius:16px;background:#041523}
+.sim-controls{display:grid;gap:.8rem;align-content:start}
+.sim-stat{padding:1rem;border-radius:14px;background:rgba(255,255,255,.045);border:1px solid var(--line)}
+.sim-stat b{display:block;font:800 1.8rem/1.1 var(--sans);color:var(--glow)}
+.sim-stat small{color:var(--mist)}
+.species-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:1.5rem}
+.species-card{overflow:hidden;border:1px solid var(--line);border-radius:18px;background:rgba(4,24,39,.75)}
+.species-card img{display:block;width:100%;height:175px;object-fit:cover;background:linear-gradient(135deg,#0a4764,#03111d)}
+.species-copy{padding:1rem}
+.species-copy h3{margin:0 0 .3rem;font-size:1.25rem}
+.species-copy p{margin:.35rem 0;color:var(--mist);font-size:1rem}
+.tag{display:inline-block;border:1px solid rgba(124,245,224,.35);border-radius:99px;padding:.2rem .6rem;color:var(--glow);font:600 .75rem var(--sans)}
+.dash-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin-top:1.4rem}
+.dash-number{font:800 2.2rem/1.1 var(--sans);color:var(--glow)}
+.dash-card p{margin:.5rem 0 0;font-size:.98rem;color:var(--mist)}
+.progress{height:9px;background:rgba(255,255,255,.12);border-radius:99px;overflow:hidden;margin-top:.8rem}
+.progress span{display:block;height:100%;width:var(--w,50%);background:linear-gradient(90deg,#31bde0,#7cf5e0);border-radius:99px}
+.impact-controls{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.2rem;margin-top:1.2rem}
+.impact-controls label{font:600 .98rem var(--sans);display:block}
+.impact-result{font:800 clamp(2rem,5vw,3.4rem)/1.1 var(--sans);color:var(--glow);margin:.6rem 0}
+.searchbox{width:100%;max-width:520px;background:rgba(2,15,27,.8);color:var(--foam);border:1px solid var(--line);border-radius:12px;padding:.9rem 1rem;font:1rem var(--sans)}
+.fun-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:1.5rem}
+.fun-fact{padding:1.1rem;border-left:3px solid var(--amber);background:rgba(255,255,255,.035);border-radius:0 14px 14px 0}
+.fun-fact b{font-family:var(--sans);display:block;margin-bottom:.35rem}
+.action-btn{font:700 .95rem var(--sans);color:#032a26;background:var(--glow);border:0;border-radius:999px;padding:.7rem 1rem;cursor:pointer}
+.action-btn:hover{filter:brightness(1.08)}
+@media(max-width:760px){.sim-layout{grid-template-columns:1fr}#bathymetry{height:250px}.sim-shell,.dash-card,.impact-box{padding:1rem}}
+
+
+/* ---------- polished multi-page tab experience ---------- */
+:root{--aura:rgba(62,220,255,.22);--glass:rgba(3,22,38,.78)}
+body{background:#041521}
+#mainNav{position:sticky;top:0;z-index:50;background:rgba(2,13,23,.88);backdrop-filter:blur(18px);border-bottom:1px solid rgba(124,245,224,.2);padding:.65rem clamp(.65rem,3vw,2rem);}
+.nav-inner{max-width:1400px;margin:auto;display:flex;align-items:center;gap:1rem;}
+.brandmark{font:800 .9rem var(--sans);letter-spacing:.13em;color:var(--glow);white-space:nowrap;text-transform:uppercase;text-decoration:none;}
+.nav-tabs{display:flex;gap:.4rem;overflow-x:auto;scrollbar-width:thin;flex:1;padding:.2rem 0;}
+.nav-tab{font:600 .86rem var(--sans);white-space:nowrap;color:var(--mist);background:rgba(255,255,255,.035);border:1px solid transparent;border-radius:999px;padding:.62rem .9rem;cursor:pointer;transition:color .2s,background .2s,border-color .2s,transform .2s;}
+.nav-tab:hover{color:var(--foam);border-color:rgba(124,245,224,.35);transform:translateY(-1px)}
+.nav-tab[aria-selected="true"]{color:#032a26;background:var(--glow);border-color:var(--glow);box-shadow:0 0 22px rgba(124,245,224,.2)}
+#tabStage{min-height:65vh;animation:stageIn .35s ease both;}
+.tab-panel{min-height:65vh;animation:panelIn .35s ease both;}
+.tab-panel[hidden]{display:none!important}
+.tab-panel>section,.tab-panel>#zones{padding-top:clamp(2rem,5vw,5rem);padding-bottom:clamp(2rem,5vw,5rem)}
+#homePanel .hero{min-height:min(88svh,980px)}
+#homePanel .facts{margin-top:0}
+.tab-intro{max-width:1100px;margin:0 auto;padding:3rem 1.25rem 0}
+.tab-intro .section-kicker{margin-bottom:.6rem}
+#tabStage .wrap{width:min(1200px,100% - 2.5rem)}
+#tabStage .panel,#tabStage .sim-shell,#tabStage .impact-box{border-color:rgba(124,245,224,.22);box-shadow:0 14px 40px rgba(0,0,0,.28),0 0 26px rgba(62,220,255,.08)}
+#tabStage h2{text-shadow:0 0 28px rgba(124,245,224,.1)}
+.encyclopedia-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.8rem;max-width:760px;margin:1.3rem 0}
+.encyclopedia-stats>div{border:1px solid var(--line);border-radius:15px;padding:1rem;background:linear-gradient(145deg,rgba(20,77,98,.55),rgba(2,17,30,.72));}
+.encyclopedia-stats b{display:block;font:800 clamp(1.5rem,4vw,2.4rem)/1.1 var(--sans);color:var(--glow)}
+.encyclopedia-stats span{font:500 .86rem var(--sans);color:var(--mist)}
+.species-filters{display:flex;flex-wrap:wrap;gap:.55rem;margin:1rem 0}
+.encyclopedia-hint{font-size:.9rem;color:var(--mist);margin:.4rem 0 1rem}
+.encyclopedia-note{font-size:.9rem;color:var(--mist);margin-top:1.5rem}
+.species-card{transition:transform .25s,border-color .25s,box-shadow .25s}
+.species-card:hover{transform:translateY(-5px);border-color:rgba(124,245,224,.55);box-shadow:0 18px 42px rgba(0,0,0,.3),0 0 28px rgba(62,220,255,.13)}
+.species-card img{height:190px;object-position:center;background:radial-gradient(ellipse at 50% 30%,#17617b,#04111e 75%)}
+.species-quick{display:grid;gap:.5rem;margin:.9rem 0}
+.species-quick span{font-size:.9rem;color:var(--mist);padding:.5rem .65rem;border-radius:9px;background:rgba(255,255,255,.035)}
+.species-quick b{display:block;color:var(--glow);font:700 .75rem var(--sans);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.2rem}
+.species-details{margin-top:.9rem;border-top:1px solid var(--line);padding-top:.75rem}
+.species-details summary{font:700 .9rem var(--sans);color:var(--glow);cursor:pointer;list-style:none}
+.species-details summary::-webkit-details-marker{display:none}
+.species-details summary:after{content:'＋';float:right}
+.species-details[open] summary:after{content:'−'}
+.species-detail-content{padding-top:.5rem}
+.species-detail-content p{font-size:.92rem;margin:.65rem 0;color:var(--mist)}
+.species-detail-content b{color:var(--foam)}
+#homePanel .hero:after{z-index:0}
+#homePanel .hero .wrap{z-index:2}
+#tabStage .zone{min-height:76vh}
+body:not(.active-tab-zones) #gauge{display:none}
+body.active-tab-zones #gauge{display:block}
+#siteFooter{margin-top:1rem}
+@keyframes panelIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@keyframes stageIn{from{opacity:.7}to{opacity:1}}
+@media(max-width:760px){.nav-inner{display:block}.brandmark{display:block;margin:.1rem .3rem .55rem}.nav-tabs{padding-bottom:.4rem}.nav-tab{padding:.55rem .78rem;font-size:.82rem}.encyclopedia-stats{gap:.5rem}.encyclopedia-stats>div{padding:.75rem}.species-card img{height:170px}#homePanel .hero{min-height:80svh}}
+@media(prefers-reduced-motion:reduce){#tabStage,.tab-panel{animation:none}.nav-tab,.species-card{transition:none}}
+
+</style>
+</head>
+<body>
+<aside id="gauge" aria-label="Dive gauge" aria-live="off">
+<div id="meter"><i id="mfill"></i></div>
+<div><div class="d" id="gd">0</div><div class="u">metres deep</div></div>
+<dl><dt>Pressure</dt><dd id="gp">1 atm</dd><dt>Temperature</dt><dd id="gt">20 °C</dd><dt>Sunlight</dt><dd id="gl">100%</dd></dl>
+</aside>
+
+<header class="hero">
+<canvas id="sea" aria-hidden="true"></canvas>
+<div class="wrap">
+<h1 class="glow-title">Eleven kilometres of water.</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Giant Submarine Animation</title>
+
+<style>
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background:
+      radial-gradient(ellipse at 50% 100%, #075477 0%, transparent 60%),
+      linear-gradient(180deg, #020817, #041e36 55%, #063b55);
+    color: white;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* Animated submarine background */
+  .submarine-scene {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .ocean-glow {
+    position: absolute;
+    width: 90vw;
+    height: 90vw;
+    max-width: 1000px;
+    max-height: 1000px;
+    left: 50%;
+    top: 55%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, #0089b72b, transparent 68%);
+    animation: glowPulse 6s ease-in-out infinite alternate;
+  }
+
+  .submarine {
+    position: absolute;
+    width: min(1100px, 125vw);
+    left: -120%;
+    top: 38%;
+    opacity: 0.52;
+    filter: drop-shadow(0 0 22px #00cfff55);
+    animation: cruise 32s linear infinite;
+  }
+
+  .submarine svg {
+    display: block;
+    width: 100%;
+    overflow: visible;
+  }
+
+  .sub-glow {
+    animation: lightPulse 3s ease-in-out infinite alternate;
+  }
+
+  .propeller {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: spin 0.45s linear infinite;
+  }
+
+  .bubble {
+    position: absolute;
+    bottom: -60px;
+    border: 1px solid #8ceaff66;
+    background: #9befff12;
+    border-radius: 50%;
+    animation: rise linear infinite;
+  }
+
+  .bubble:nth-child(2) { left: 8%; width: 12px; height: 12px; animation-duration: 13s; }
+  .bubble:nth-child(3) { left: 22%; width: 22px; height: 22px; animation-duration: 17s; animation-delay: -7s; }
+  .bubble:nth-child(4) { left: 46%; width: 9px; height: 9px; animation-duration: 11s; animation-delay: -4s; }
+  .bubble:nth-child(5) { left: 69%; width: 17px; height: 17px; animation-duration: 15s; animation-delay: -9s; }
+  .bubble:nth-child(6) { left: 88%; width: 25px; height: 25px; animation-duration: 19s; animation-delay: -5s; }
+
+  /* Keep your website content above the animation */
+  .website-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  @keyframes cruise {
+    0%   { left: -120%; transform: translateY(0) rotate(-2deg); }
+    20%  { transform: translateY(-22px) rotate(0deg); }
+    50%  { transform: translateY(12px) rotate(1deg); }
+    80%  { transform: translateY(-15px) rotate(0deg); }
+    100% { left: 110%; transform: translateY(0) rotate(-2deg); }
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  @keyframes rise {
+    0% { transform: translateY(0) translateX(0); opacity: 0; }
+    10% { opacity: 0.7; }
+    90% { opacity: 0.4; }
+    100% { transform: translateY(-115vh) translateX(35px); opacity: 0; }
+  }
+
+  @keyframes glowPulse {
+    from { opacity: 0.4; }
+    to { opacity: 1; }
+  }
+
+  @keyframes lightPulse {
+    from { opacity: 0.5; }
+    to { opacity: 1; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .submarine, .propeller, .bubble, .ocean-glow {
+      animation-play-state: paused;
+    }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- Background animation -->
+<div class="submarine-scene" aria-hidden="true">
+  <div class="ocean-glow"></div>
+
+  <div class="submarine">
+    <svg viewBox="0 0 1100 380" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="hull" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#6de7f4"/>
+          <stop offset="20%" stop-color="#197d9c"/>
+          <stop offset="55%" stop-color="#07506f"/>
+          <stop offset="100%" stop-color="#011b34"/>
+        </linearGradient>
+
+        <linearGradient id="topMetal" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#b3faff"/>
+          <stop offset="100%" stop-color="#17617d"/>
+        </linearGradient>
+
+        <radialGradient id="window">
+          <stop offset="0%" stop-color="#eaffff"/>
+          <stop offset="35%" stop-color="#6ceeff"/>
+          <stop offset="100%" stop-color="#08749d"/>
+        </radialGradient>
+
+        <linearGradient id="beam" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#43eaff" stop-opacity="0.28"/>
+          <stop offset="100%" stop-color="#43eaff" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+
+      <!-- Headlight beams -->
+      <path d="M865 170 L1100 95 L1100 255 L865 210Z"
+            fill="url(#beam)" class="sub-glow"/>
+
+      <!-- Rear tail fins -->
+      <path d="M205 163 L105 92 L130 176 L75 210 L205 220Z"
+            fill="#07506d" stroke="#56d7e9" stroke-width="4"/>
+      <path d="M200 208 L105 286 L135 215Z"
+            fill="#0b6782" stroke="#42c7dc" stroke-width="4"/>
+      <path d="M155 170 L120 145 L132 200Z" fill="#91f6ff"/>
+
+      <!-- Main hull -->
+      <path d="M145 195
+               Q160 115 290 105
+               L820 105
+               Q960 105 1020 175
+               Q1050 195 1020 220
+               Q960 285 820 285
+               L290 285
+               Q160 275 145 195Z"
+            fill="url(#hull)" stroke="#63e8f7" stroke-width="5"/>
+
+      <!-- Hull highlight -->
+      <path d="M220 145 Q280 118 410 122 L810 122
+               Q920 122 980 170"
+            fill="none" stroke="#b8fbff" stroke-opacity=".55"
+            stroke-width="5" stroke-linecap="round"/>
+
+      <!-- Lower shadow plating -->
+      <path d="M240 245 Q350 273 500 268 L850 268
+               Q940 260 990 218 Q920 286 820 285 L290 285
+               Q250 275 240 245Z"
+            fill="#001b31" opacity=".7"/>
+
+      <!-- Tower -->
+      <path d="M440 107 L475 53 Q490 42 520 42
+               L610 42 Q630 44 638 65 L660 107Z"
+            fill="url(#topMetal)" stroke="#a2f7ff" stroke-width="4"/>
+
+      <path d="M500 45 L500 22 L570 22 L570 45"
+            fill="#155a77" stroke="#70eaf6" stroke-width="4"/>
+
+      <path d="M530 22 L530 7 L545 7 L545 22"
+            fill="#73f1ff"/>
+
+      <!-- Tower windows -->
+      <rect x="508" y="59" width="23" height="24" rx="5"
+            fill="url(#window)"/>
+      <rect x="541" y="59" width="23" height="24" rx="5"
+            fill="url(#window)"/>
+      <rect x="574" y="59" width="23" height="24" rx="5"
+            fill="url(#window)"/>
+
+      <!-- Main portholes -->
+      <g stroke="#9af7ff" stroke-width="5" fill="#062e4b">
+        <circle cx="340" cy="177" r="24"/>
+        <circle cx="425" cy="177" r="24"/>
+        <circle cx="510" cy="177" r="24"/>
+        <circle cx="595" cy="177" r="24"/>
+        <circle cx="680" cy="177" r="24"/>
+        <circle cx="765" cy="177" r="24"/>
+        <circle cx="850" cy="177" r="24"/>
+      </g>
+
+      <g fill="url(#window)" class="sub-glow">
+        <circle cx="340" cy="177" r="15"/>
+        <circle cx="425" cy="177" r="15"/>
+        <circle cx="510" cy="177" r="15"/>
+        <circle cx="595" cy="177" r="15"/>
+        <circle cx="680" cy="177" r="15"/>
+        <circle cx="765" cy="177" r="15"/>
+        <circle cx="850" cy="177" r="15"/>
+      </g>
+
+      <!-- Hull markings -->
+      <path d="M290 224 L880 224" stroke="#70eaf6"
+            stroke-opacity=".5" stroke-width="3"/>
+      <path d="M290 237 L880 237" stroke="#70eaf6"
+            stroke-opacity=".2" stroke-width="2"/>
+
+      <text x="565" y="257" text-anchor="middle"
+            font-family="Arial, sans-serif" font-size="20"
+            font-weight="bold" letter-spacing="7"
+            fill="#b6faff">HAIL HITLER</text>
+
+      <!-- Front headlight -->
+      <circle cx="1010" cy="193" r="15" fill="#d9ffff"
+              class="sub-glow"/>
+      <circle cx="1010" cy="193" r="28" fill="none"
+              stroke="#6beeff" stroke-opacity=".6" stroke-width="3"/>
+
+      <!-- Rear spinning propeller -->
+      <g transform="translate(104 195)">
+        <circle r="12" fill="#b1faff"/>
+        <g class="propeller" fill="#6ce7f5" stroke="#c4fcff" stroke-width="2">
+          <path d="M0 -8 Q-15 -40 -3 -55 Q10 -30 6 -8Z"/>
+          <path d="M8 0 Q40 -15 55 -3 Q30 10 8 6Z"/>
+          <path d="M0 8 Q15 40 3 55 Q-10 30 -6 8Z"/>
+          <path d="M-8 0 Q-40 15 -55 3 Q-30 -10 -8 -6Z"/>
+        </g>
+      </g>
+
+      <!-- Tiny details -->
+      <g fill="#b1faff">
+        <circle cx="250" cy="205" r="4"/>
+        <circle cx="275" cy="205" r="4"/>
+        <circle cx="300" cy="205" r="4"/>
+        <circle cx="900" cy="220" r="4"/>
+        <circle cx="920" cy="220" r="4"/>
+      </g>
+    </svg>
+  </div>
+
+  <!-- Rising ocean bubbles -->
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+</div>
+
+<!-- Your actual website content goes here -->
+<main class="website-content">
+  <section style="min-height:100vh;display:grid;place-content:center;text-align:center;padding:30px;">
+    <p style="letter-spacing:7px;color:#7defff;">DEEP OCEAN EXPEDITION</p>
+    <h1 style="font-size:clamp(38px,7vw,90px);margin:10px 0;text-shadow:0 0 30px #00bfff66;">
+      THE LONG WAY DOWN
+    </h1>
+    <p style="font-size:18px;color:#b9e9f4;">
+      An interactive journey into the unknown.
+    </p>
+  </section>
+
+  <section style="min-height:100vh;padding:60px 10%;background:#00152688;">
+    <h2>By 'The CREATOR'</h2>
+    <p>This website was created by the only unemployed oversmart in the universe- the G.O.A.T.- VARAD AWARE</p>
+<p>This website was completely created for timepass and fun to pass depressive time. "I m so unemployed that i will never be able to get a job. i have worked atleast 40 whole hours just to create this single useless website which u r now viewing. i spent more than half of the time to see a space where can i code in my very very very old Windows7 (converted to sastaa linux version).if u have any queries regarding me, idontcare. #TATHAASTU! "  said varad.                           never forget - HAIL HITLER.</p><p>-team <u>HITLER UNITED</u></p><p>thought of the life- <i>"Common sense is not common,So,if u DON'T have it, BEST OF LUCK"</i>  -again made by VARAD </p>
+  </section>
+</main>
+
+</body>
+</html>
+
+<div class="shoot-star">✦</div>
+<style>
+.shoot-star {
+  position: fixed;
+  top: 18%;
+  left: -30px;
+  color: #9dfcff;
+  font-size: 69px;
+  z-index: 20;
+  pointer-events: none;
+  text-shadow: 0 0 12px cyan;
+  animation: starFly 5s linear infinite;
+}
+@keyframes starFly {
+  0% { transform: translate(0,0) rotate(0); opacity: 0; }
+  10% { opacity: 1; }
+  100% { transform: translate(110vw,50vh) rotate(360deg); opacity: 0; }
+}
+</style>
+
+<span class="compass">✥</span>
+<style>
+.compass {
+  display:inline-block;
+  color:#65f4ff;font-size:69px;
+  animation:spin 6s linear infinite;
+}
+@keyframes spin { to { transform:rotate(360deg); } }
+</style>
+
+<p class="lead">Almost three quarters of Earth is ocean, and most of it has never been seen by a person. Scroll to dive from the sunlit surface to the floor of the Mariana Trench. The gauge tracks what changes on the way.</p>
+<a class="btn" href="#oceans">Start the dive</a>
+
+<div class="magic-coral">🪸</div>
+<style>
+.magic-coral {
+  display: inline-block;
+  font-size: 45px;
+  transform-origin: bottom center;
+  animation: coralPulse 2s ease-in-out infinite;
+}
+@keyframes coralPulse {
+  0%,100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 4px #ff65cf);
+  }
+  50% {
+    transform: scale(1.15);
+    filter: drop-shadow(0 0 20px #ff65cf)
+            hue-rotate(45deg);
+  }
+}
+</style>
+
+</div>
+</header>
+
+
+<div class="sonar"><div class="scan"></div></div>
+
+<style>
+.sonar {
+  width: 180px;
+  height: 180px;
+  margin: 30px auto;
+  border-radius: 50%;
+  border: 1px solid #21e6c1;
+  background: repeating-radial-gradient(
+    circle, transparent 0 25px, #145b60 26px 27px
+  );
+  background-color: #00232c;
+  position: relative;
+  overflow: hidden;
+}
+.scan {
+  position: absolute;
+  inset: 0;
+  background: conic-gradient(
+    from 0deg, transparent 70%, #21e6c177
+  );
+  animation: radar 3s linear infinite;
+}
+@keyframes radar {
+  to { transform: rotate(360deg); }
+}
+</style>
+
+<main>
+<div class="wrap">
+<div class="facts" id="facts">
+<div><b data-n="71" data-s="%">0</b><span>of Earth’s surface is covered by ocean</span></div>
+<div><b data-n="97" data-s="%">0</b><span>of all the planet’s water is held in the ocean</span></div>
+<div><b data-n="50" data-s="%">0</b><span>or more of the oxygen we breathe comes from marine plants and algae</span></div>
+<div><b data-n="80" data-s="%+">0</b><span>of the seafloor has never been explored in detail</span></div>
+</div>
+</div>
+
+<section id="oceans" class="pad">
+<div class="wrap">
+<h2>One ocean, five names</h2>
+
+<div class="mini-wave">～～～～～～</div>
+<style>
+.mini-wave {
+  color:#39e6ff;
+  font-size:28px;
+  animation:wave 2s ease-in-out infinite;
+}
+@keyframes wave {
+  50% { transform:translateX(10px) skewX(-8deg); }
+}
+</style>
+
+<p>Geographers divide the world ocean into five basins. Choose one to compare size, depth and character.</p>
+<div class="tabs" role="tablist" id="tabs"></div>
+<div class="panel" id="opanel" role="tabpanel" aria-live="polite"></div>
+</div>
+</section>
+
+<div id="zones"></div>
+
+<section class="pad" id="bathymetric-lab" style="border-top:1px solid var(--line)"><div class="wrap"><div class="section-kicker">Explore the unseen</div>
+
+<span class="sparkle">✦</span>
+<style>
+.sparkle {
+  display:inline-block;
+  color:#a3f7ff;font-size:48px;
+  text-shadow:0 0 12px #00d9ff;
+  animation:twinkle 1.3s infinite alternate;
+}
+@keyframes twinkle {
+  to { opacity:.3; transform:scale(.65) rotate(45deg); }
+}
+</style>
+<h2>Live bathymetric simulator</h2>
+
+<div class="scan-line"></div>
+<style>
+.scan-line {
+  width:120px;height:2px;
+  background:#28f5ff;
+  box-shadow:0 0 10px #28f5ff;
+  animation:scan 2s ease-in-out infinite alternate;
+}
+@keyframes scan {
+  from { transform:translateX(0); }
+  to { transform:translateX(45px); }
+}
+</style>
+
+<p>Move through a stylised seafloor profile. Change the dive depth to see the terrain, pressure and light level update live. This is an educational visualisation, not a navigational bathymetry chart.</p><div class="sim-shell"><div class="sim-layout"><canvas id="bathymetry" aria-label="Animated illustrative ocean-floor cross section"></canvas><div class="sim-controls"><label for="bathyDepth" class="sans">Dive depth: <b id="bathyDepthText">2,000 m</b></label><input id="bathyDepth" type="range" min="0" max="10935" step="25" value="2000"><div class="sim-stat"><b id="bathyPressure">199 atm</b><small>Approximate absolute pressure</small></div><div class="sim-stat"><b id="bathyLight">0%</b><small>Estimated sunlight remaining</small></div><button class="action-btn" id="randomDive" type="button">Explore a random depth</button></div></div><p class="sans" id="bathyCaption" style="color:var(--mist);margin:1rem 0 0;font-size:.95rem">The continental slope gives way to the deep ocean.</p></div></div></section>
+
+<section class="pad" id="species" style="border-top:1px solid var(--line)"><div class="wrap"><div class="section-kicker">The living ocean database</div>
+
+<span class="little-fish">🐟</span>
+<style>
+.little-fish {
+  display:inline-block;
+  animation:swim 3s ease-in-out infinite alternate;
+}
+@keyframes swim {
+  from { transform:translateX(0); }
+  to { transform:translateX(35px); }
+}
+</style>
+
+<div class="mini-wave">～～～～～～</div>
+<style>
+.mini-wave {
+  color:#39e6ff;
+  font-size:28px;
+  animation:wave 2s ease-in-out infinite;
+}
+@keyframes wave {
+  50% { transform:translateX(10px) skewX(-8deg); }
+}
+</style>
+
+<h2>Ocean species encyclopedia</h2><p>Explore an expanding field guide to ocean life, from sunlit reef giants to animals adapted to crushing trench pressure. Search by species, depth, habitat, diet, anatomy or survival strategy. Open any record for a deeper profile.</p>
+<div class="baby-whale">🐳<span>°</span></div>
+<style>
+.baby-whale {
+  display: inline-block;
+  font-size: 42px;
+  animation: whaleBounce 2s ease-in-out infinite;
+  filter: drop-shadow(0 0 12px #35eaff);
+}
+.baby-whale span {
+  display: inline-block;
+  color: #8ffaff;
+  font-size: 18px;
+  animation: whaleBubble 1.5s infinite;
+}
+@keyframes whaleBounce {
+  50% { transform: translateY(-14px) rotate(-8deg); }
+}
+@keyframes whaleBubble {
+  to { transform: translate(12px,-25px); opacity: 0; }
+}
+</style>
+
+<div class="rainbow-jelly"></div>
+<style>
+.rainbow-jelly {
+  display: inline-block;
+  font-size: 45px;
+  animation: jellyMagic 2s ease-in-out infinite;
+}
+@keyframes jellyMagic {
+  0%,100% {
+    transform: translateY(0) rotate(-8deg);
+    filter: hue-rotate(0deg) drop-shadow(0 0 5px cyan);
+  }
+  50% {
+    transform: translateY(-16px) rotate(8deg);
+    filter: hue-rotate(140deg) drop-shadow(0 0 18px magenta);
+  }
+}
+</style>
+<div class="encyclopedia-stats"><div><b id="speciesTotal">24</b><span>field records</span></div><div><b>5</b><span>ocean depth zones</span></div><div><b>∞</b><span>survival strategies</span></div></div><input id="speciesSearch" class="searchbox" type="search" placeholder="Search name, habitat, diet, depth, adaptation…" aria-label="Search species encyclopedia"><div class="species-filters" id="speciesFilters" role="group" aria-label="Filter species by habitat"><button class="chip" data-filter="all" aria-pressed="true">All records</button><button class="chip" data-filter="surface" aria-pressed="false">Surface & reefs</button><button class="chip" data-filter="twilight" aria-pressed="false">Twilight zone</button><button class="chip" data-filter="deep" aria-pressed="false">Midnight & abyss</button><button class="chip" data-filter="hadal" aria-pressed="false">Hadal trench</button></div><p class="sans encyclopedia-hint" id="speciesResultCount" aria-live="polite">Showing all field records</p><div id="speciesGrid" class="species-grid"></div><p class="encyclopedia-note">Depth ranges and sizes vary by species and observation. Profiles are educational summaries; species in a broad group can differ substantially.</p></div></section>
+
+<section class="pad" id="fun-facts" style="border-top:1px solid var(--line)"><div class="wrap"><div class="section-kicker">Tiny facts, big ocean</div><h2>Ocean curiosities</h2>
+
+<div class="shoot-star">✦</div>
+<style>
+.shoot-star {
+  position: fixed;
+  top: 18%;
+  left: -30px;
+  color: #9dfcff;
+  font-size: 24px;
+  z-index: 20;
+  pointer-events: none;
+  text-shadow: 0 0 12px cyan;
+  animation: starFly 5s linear infinite;
+}
+@keyframes starFly {
+  0% { transform: translate(0,0) rotate(0); opacity: 0; }
+  10% { opacity: 1; }
+  100% { transform: translate(110vw,50vh) rotate(360deg); opacity: 0; }
+}
+</style>
+<div class="fun-list"><div class="fun-fact"><b>Bioluminescence</b>Many deep-sea animals make their own light to lure prey, communicate or disappear into darkness.</div><div class="fun-fact"><b>Marine snow</b>Organic particles drift down from surface waters and feed ecosystems thousands of metres below.</div><div class="fun-fact"><b>One giant migration</b>Every night, many deep-water animals rise toward the surface to feed, then descend again by day.</div><div class="fun-fact"><b>Pressure climbs fast</b>At around 1,000 metres, pressure is roughly 100 times the pressure at the surface.</div></div></div></section>
+
+<section class="pad" id="blueguard" style="border-top:1px solid var(--line)"><div class="wrap"><div class="section-kicker">Ocean action centre</div>
+
+<span class="pulse-dot"></span>
+<style>
+.pulse-dot {
+  display:inline-block;
+  width:26px;height:26px;
+  background:#35ffad;border-radius:50%;
+  animation:pulse 1s infinite;
+}
+@keyframes pulse {
+  50% { box-shadow:0 0 0 7px #35ffad22; }
+}
+</style>
+<h2>BlueGuard dashboard</h2><p>A simple personal action tracker. Tick the actions you’ve taken to see your participation score rise. Scores are motivational, not a scientific estimate of environmental impact.</p><div class="dash-grid"><div class="dash-card"><div class="dash-number" id="bgScore">0%</div><b>Action score</b><div class="progress"><span id="bgProgress" style="--w:0%"></span></div><p id="bgStatus">Start with one small action.</p></div><div class="dash-card"><div class="dash-number" id="bgCount">0 / 5</div><b>Actions completed</b><p>Every checked action adds to your personal score.</p></div><div class="dash-card"><div class="dash-number">BLUE</div><b>Mission</b><p>Reduce waste, protect habitats and help others learn about the ocean.</p></div></div><div class="sim-shell" id="bgActions"><label><input type="checkbox"> Used a reusable bottle or cup today</label><br><label><input type="checkbox"> Avoided a single-use plastic item</label><br><label><input type="checkbox"> Chose sustainable seafood or a plant-based meal</label><br><label><input type="checkbox"> Shared a reliable ocean-conservation fact</label><br><label><input type="checkbox"> Joined or supported a local cleanup or habitat project</label></div></div></section>
+
+<section class="pad" id="impact" style="border-top:1px solid var(--line)"><div class="wrap"><div class="section-kicker">Small changes add up</div><h2>Ocean impact calculator</h2>
+
+<span class="loader"></span>
+<style>
+.loader {
+  display:inline-block;
+  width:34px;height:34px;
+  border:2px solid #174c63;
+  border-top-color:#43efff;
+  border-radius:50%;
+  animation:spin 1s linear infinite;
+}
+@keyframes spin { to { transform:rotate(360deg); } }
+</style>
+<p>Estimate how many disposable plastic bottles you could avoid by switching to a reusable bottle. This is a simple count-based estimate, not a full life-cycle assessment.</p><div class="impact-box"><div class="impact-controls"><div><label for="bottles">Disposable bottles avoided per week</label><input id="bottles" type="range" min="0" max="35" value="7"><p class="sans"><b id="bottleCount">7</b> bottles / week</p></div><div><label for="people">People making the same change</label><input id="people" type="range" min="1" max="100" value="1"><p class="sans"><b id="peopleCount">1</b> person</p></div></div><div class="impact-result" id="impactYear">364 bottles</div><p id="impactDetail">That’s the estimated number of disposable bottles avoided in one year.</p></div></div></section>
+
+<section class="pad" id="lab" style="border-top:1px solid var(--line)">
+<div class="wrap">
+<h2>Pressure lab</h2>
+<p>Water is heavy. Every 10 metres you descend adds roughly one more atmosphere of pressure. Drag the slider, or jump to a landmark depth.</p>
+
+<span class="tiny-bubble">○</span>
+<style>
+.tiny-bubble {
+  display:inline-block;
+  color:#9cfaff;
+  animation:float 2s ease-in-out infinite;
+}
+@keyframes float {
+  50% { transform:translateY(-12px); }
+}
+</style>
+
+<div class="chips" id="marks"></div>
+<label for="slide" class="sans" style="font-weight:600">Depth: <span id="sd">0</span> m</label>
+<input type="range" id="slide" min="0" max="10935" step="5" value="0">
+<div class="readout">
+<div><b id="rp">1</b><small>atmospheres of pressure</small></div>
+<div><b id="rk">1</b><small>kg pressing on every cm² of you</small></div>
+<div><b id="rt">100%</b><small>of surface sunlight remaining</small></div>
+</div>
+<p id="rnote" class="note" style="min-height:3em"></p>
+</div>
+</section>
+
+<section class="pad" style="border-top:1px solid var(--line)">
+<div class="wrap">
+<h2>The ocean is changing</h2>
+<p>The same water that shields us from our own excess is now absorbing the cost.</p>
+<div class="grid" style="margin-top:2rem">
+<div><h3>Heat</h3><p>The ocean has absorbed about 90% of the extra heat trapped by greenhouse gases, and marine heatwaves are becoming longer and more frequent.</p></div>
+<div><h3>Acidity</h3><p>It takes up roughly a quarter to a third of our CO₂ emissions. That lowers seawater pH, which makes it harder for corals, oysters and plankton to build shells.</p></div>
+<div><h3>Plastic</h3><p>Around 8 million tonnes of plastic enter the ocean each year. It has been found from surface gyres to the deepest trenches.</p></div>
+<div><h3>Overfishing</h3><p>More than a third of assessed fish stocks are fished beyond sustainable levels. Well-managed fisheries and protected areas let stocks recover.</p></div>
+</div>
+</div>
+</section>
+</main>
+
+<div class="wrap"><footer>Figures are rounded and vary slightly between sources such as NOAA and the International Hydrographic Organization. Deepest point: about 10,935 m (Challenger Deep, Mariana Trench).</footer></div>
+
+<script>
+const $=s=>document.querySelector(s), fmt=n=>Math.round(n).toLocaleString('en');
+const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+const MAX=10935;
+/* ---------- data ---------- */
+const OCEANS=[
+{n:'Pacific',a:165.25,d:4280,deep:'Challenger Deep, 10,935 m',t:`The largest and deepest basin holds more than half of the world’s open water. Its edges form the Ring of Fire, where most earthquakes and volcanoes occur.`},
+{n:'Atlantic',a:106.46,d:3646,deep:'Puerto Rico Trench, 8,376 m',t:`The Mid-Atlantic Ridge runs down its centre, and the basin widens by a few centimetres every year as the plates spread apart.`},
+{n:'Indian',a:70.56,d:3741,deep:'Java Trench, 7,290 m',t:`The warmest of the basins. Its seasonal winds drive the monsoons that water the farmland of billions of people.`},
+{n:'Southern',a:21.96,d:3270,deep:'South Sandwich Trench, 7,434 m',t:`It rings Antarctica and is steered by the Antarctic Circumpolar Current, the strongest current on Earth. It carries heat and CO₂ between the other basins.`},
+{n:'Arctic',a:15.56,d:1205,deep:'Molloy Deep, 5,550 m',t:`The smallest and shallowest basin, mostly capped by sea ice that is shrinking and thinning as the region warms faster than the global average.`}];
+const ZONES=[
+{n:'Sunlight zone',d0:0,d1:200,t:`Light reaches this thin upper layer, so algae and plankton can photosynthesise. It holds the coral reefs, most fisheries and the plankton that produce much of our oxygen.`,
+ c:[['Manta ray','Wingspans reach about 7 metres. They glide through the water filtering plankton.'],['Green sea turtle','Spends most of its life in shallow, sunlit water, grazing on seagrass and algae.']]},
+{n:'Twilight zone',d0:200,d1:1000,t:`The light fades to dim blue, too weak for photosynthesis. Each night, billions of animals rise from here to feed near the surface, the largest daily migration of life on Earth.`,
+ c:[['Lanternfish','Among the most abundant vertebrates on the planet. Rows of light organs on their bodies glow.'],['Swordfish','Hunts in these depths. Special tissue warms its eyes and brain so it can see prey in the cold.']]},
+{n:'Midnight zone',d0:1000,d1:4000,t:`No sunlight arrives at all and the water sits near 4 °C. The only light is biological: animals here make their own to hunt, hide or find a mate.`,
+ c:[['Sperm whale','Dives beyond 1,000 m for squid, holding its breath for an hour or more.'],['Anglerfish','A glowing lure, lit by bacteria, draws prey close enough to catch.']]},
+{n:'Abyssal zone',d0:4000,d1:6000,t:`Near-freezing water, crushing pressure and a floor of soft sediment that is fed by “marine snow”, a slow drift of dead plankton and waste from above.`,
+ c:[['Dumbo octopus','Named for its ear-like fins. It has been recorded from about 400 m to over 7,000 m.'],['Sea cucumber','Often the most numerous animals on the abyssal plains, quietly recycling the marine snow.']]},
+{n:'Hadal zone',d0:6000,d1:MAX,t:`Named after Hades, this is the deep trenches, mostly where one tectonic plate dives beneath another. Fewer people have visited the bottom of the Challenger Deep than have walked on the Moon.`,
+ c:[['Mariana snailfish','Found around 8,000 m, close to the depth limit where a fish’s cells can still cope with pressure.'],['Amphipods','Shrimp-like scavengers that live in even the deepest trenches, feeding on what falls from above.']]}];
+const MARKS=[['Scuba limit',40,'Recreational divers stop at about 40 m. Below that, nitrogen starts to affect judgement.'],['Free-dive record',214,'The deepest recorded breath-hold dive is about 214 m, on a single breath and no oxygen.'],['Sperm whale',1000,'A hunting dive for a sperm whale. No light from the sun gets this far.'],['Titanic',3800,'The wreck lies at about 3,800 m, where pressure is near 380 atmospheres.'],['Challenger Deep',MAX,'The deepest known point. Crewed submersibles have reached it only a handful of times.']];
+/* ---------- oceans tabs ---------- */
+const tabs=$('#tabs');
+OCEANS.forEach((o,i)=>{const b=document.createElement('button');b.className='tab';b.role='tab';b.textContent=o.n;b.onclick=()=>showOcean(i);tabs.append(b)});
+function showOcean(i){
+ [...tabs.children].forEach((b,j)=>b.setAttribute('aria-selected',i===j));
+ const o=OCEANS[i];
+ $('#opanel').innerHTML=`<h3 style="margin:0 0 .6rem;font-size:1.6rem">${o.n} Ocean</h3><p style="margin:0 0 1rem">${o.t}</p>
+ <div class="bar"><span>Area</span><div class="track"><div class="fill" style="width:${o.a/165.25*100}%"></div></div><em>${o.a} M km²</em></div>
+ <div class="bar"><span>Average depth</span><div class="track"><div class="fill" style="width:${o.d/4280*100}%"></div></div><em>${fmt(o.d)} m</em></div>
+ <p class="sans" style="margin:1rem 0 0;font-size:.98rem;color:var(--mist)">Deepest point: <b style="color:var(--foam)">${o.deep}</b></p>`;
+}
+showOcean(0);
+/* ---------- zones ---------- */
+ZONES.forEach((z,zi)=>{
+ const s=document.createElement('section');s.className='zone';s.dataset.d0=z.d0;s.dataset.d1=z.d1;
+ s.innerHTML=`<div class="wrap"><div class="range">${fmt(z.d0)} to ${fmt(z.d1)} metres</div><h2>${z.n}</h2><p>${z.t}</p>
+ <div class="chips" role="group" aria-label="Animals of the ${z.n}"></div><p class="note" aria-live="polite"></p>
+ <div class="stat"><span>Pressure at the bottom: <b>${fmt(1+z.d1/10.06)} atm</b></span><span>Temperature: <b>≈${temp(z.d1).toFixed(1)} °C</b></span></div></div>`;
+ const chips=s.querySelector('.chips'),note=s.querySelector('.note');
+ z.c.forEach((c,ci)=>{const b=document.createElement('button');b.className='chip';b.textContent=c[0];
+  b.onclick=()=>{[...chips.children].forEach(x=>x.setAttribute('aria-pressed',x===b));note.textContent=c[1]};chips.append(b);if(!ci)b.click()});
+ $('#zones').append(s);
+});
+/* ---------- physics ---------- */
+function interp(st,d){for(let i=1;i<st.length;i++){if(d<=st[i][0]){const[a,b]=[st[i-1],st[i]],f=(d-a[0])/(b[0]-a[0]);return a[1]+(b[1]-a[1])*f}}return st[st.length-1][1]}
+function temp(d){return interp([[0,20],[200,12],[1000,4.5],[4000,2],[11000,1.5]],d)}
+const light=d=>d>=1000?'none':(v=>v<.1?'<0.1%':v.toFixed(v<10?1:0)+'%')(100*Math.exp(-d/43));
+const press=d=>1+d/10.06;
+const BG=[[0,[22,124,160]],[200,[10,84,120]],[1000,[6,44,74]],[4000,[4,22,40]],[11000,[2,8,16]]];
+function bg(d){const c=[0,1,2].map(k=>interp(BG.map(s=>[s[0],s[1][k]]),d));document.body.style.backgroundColor=`rgb(${c.map(Math.round)})`}
+/* ---------- gauge ---------- */
+let target=0,shown=0;
+function readDepth(){
+ const y=scrollY+innerHeight*.55,zs=[...document.querySelectorAll('.zone')];
+ const top=e=>e.getBoundingClientRect().top+scrollY;
+ if(y<top(zs[0]))return 0;
+ for(const z of zs){const t=top(z),h=z.offsetHeight;if(y<t+h){const f=(y-t)/h;return +z.dataset.d0+(z.dataset.d1-z.dataset.d0)*f}}
+ return MAX;
+}
+addEventListener('scroll',()=>{target=readDepth();if(reduce)tick()},{passive:true});
+function tick(){
+ shown+=(target-shown)*(reduce?1:.12);if(Math.abs(target-shown)<.5)shown=target;
+ $('#gd').textContent=fmt(shown);$('#gp').textContent=fmt(press(shown))+' atm';
+ $('#gt').textContent='≈'+temp(shown).toFixed(1)+' °C';$('#gl').textContent=light(shown);
+ $('#mfill').style.height=(shown/MAX*100)+'%';bg(shown);
+}
+/* ---------- pressure lab ---------- */
+const slide=$('#slide');
+function lab(){
+ const d=+slide.value,p=press(d);
+ $('#sd').textContent=fmt(d);$('#rp').textContent=fmt(p);$('#rk').textContent=fmt(p*1.033);
+ $('#rt').textContent=light(d);
+}
+slide.oninput=()=>{lab();$('#rnote').textContent='';[...$('#marks').children].forEach(c=>c.setAttribute('aria-pressed',false))};
+MARKS.forEach(m=>{const b=document.createElement('button');b.className='chip';b.textContent=m[0];b.onclick=()=>{slide.value=m[1];lab();[...$('#marks').children].forEach(c=>c.setAttribute('aria-pressed',c===b));$('#rnote').textContent=m[2]};$('#marks').append(b)});
+lab();
+/* ---------- count-up ---------- */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;io.unobserve(e.target);
+ e.target.querySelectorAll('b').forEach(b=>{const n=+b.dataset.n,s=b.dataset.s,t0=performance.now();
+  const f=t=>{const k=reduce?1:Math.min(1,(t-t0)/1400);b.textContent=Math.round(n*(1-Math.pow(1-k,3)))+s;if(k<1)requestAnimationFrame(f)};requestAnimationFrame(f)})}),{threshold:.4});
+io.observe($('#facts'));
+/* ---------- hero sea ---------- */
+const cv=$('#sea'),cx=cv.getContext('2d');let W,H,bub=[];
+function size(){const r=cv.getBoundingClientRect();W=cv.width=r.width;H=cv.height=r.height;bub=Array.from({length:Math.round(W/25)},()=>({x:Math.random()*W,y:Math.random()*H,r:1+Math.random()*3,v:.2+Math.random()*.6}))}
+addEventListener('resize',size);size();
+function sea(t){
+ cx.clearRect(0,0,W,H);
+ const g=cx.createLinearGradient(0,0,0,H);g.addColorStop(0,'rgba(190,240,240,.28)');g.addColorStop(.5,'rgba(60,170,200,.05)');g.addColorStop(1,'rgba(0,0,0,0)');cx.fillStyle=g;cx.fillRect(0,0,W,H);
+ for(let i=0;i<4;i++){
+  cx.beginPath();cx.moveTo(0,H);
+  for(let x=0;x<=W;x+=12)cx.lineTo(x,H*(.18+i*.05)+Math.sin(x/(120+i*40)+t/(900+i*250))*(14+i*5));
+  cx.lineTo(W,H);cx.closePath();cx.fillStyle=`rgba(${8+i*3},${70+i*8},${105+i*6},${.16+i*.05})`;cx.fill();
+ }
+ cx.fillStyle='rgba(233,247,244,.5)';
+ bub.forEach(b=>{b.y-=b.v;b.x+=Math.sin(t/700+b.r)*.25;if(b.y<H*.2)b.y=H+10;cx.beginPath();cx.arc(b.x,b.y,b.r,0,7);cx.globalAlpha=.55;cx.fill();cx.globalAlpha=1});
+}
+(function loop(t){sea(t||0);tick();if(!reduce)requestAnimationFrame(loop)})();
+if(reduce){sea(0);tick()}
+
+/* ---------- bathymetry simulator ---------- */
+const bathyCanvas=document.querySelector('#bathymetry');
+if(bathyCanvas){
+ const bctx=bathyCanvas.getContext('2d'), depthInput=document.querySelector('#bathyDepth');
+ const depthCaption=d=>d<200?'Sunlit shelf: photosynthesis can thrive.':d<1000?'Continental slope: blue light fades quickly.':d<4000?'Mid-ocean depths: no sunlight reaches here.':d<6000?'Abyssal plain: cold, dark and immense.':'Hadal trench: an extreme-pressure habitat.';
+ function drawBathy(){
+  const rect=bathyCanvas.getBoundingClientRect(),ratio=Math.min(devicePixelRatio||1,2);
+  bathyCanvas.width=Math.max(1,rect.width*ratio);bathyCanvas.height=Math.max(1,rect.height*ratio);
+  const w=bathyCanvas.width,h=bathyCanvas.height,ctx=bctx,d=+depthInput.value;
+  ctx.clearRect(0,0,w,h);
+  const g=ctx.createLinearGradient(0,0,0,h);g.addColorStop(0,'#0d7195');g.addColorStop(.48,'#06314f');g.addColorStop(1,'#020b17');ctx.fillStyle=g;ctx.fillRect(0,0,w,h);
+  // Stylised trench profile with shelves, ridges and a deep basin.
+  ctx.beginPath();ctx.moveTo(0,h*.59);
+  for(let x=0;x<=w;x+=4){const nx=x/w;let y=h*(.58+.13*Math.sin(nx*8)+.08*Math.sin(nx*19));y+=h*.22*Math.exp(-Math.pow((nx-.72)*7,2));y-=h*.22*Math.exp(-Math.pow((nx-.25)*9,2));ctx.lineTo(x,y)}
+  ctx.lineTo(w,h);ctx.lineTo(0,h);ctx.closePath();const floor=ctx.createLinearGradient(0,h*.5,0,h);floor.addColorStop(0,'#3b8a83');floor.addColorStop(1,'#112e38');ctx.fillStyle=floor;ctx.fill();
+  ctx.strokeStyle='rgba(124,245,224,.85)';ctx.lineWidth=2*ratio;ctx.stroke();
+  const px=w*(.1+.8*d/10935),py=h*(.16+.62*d/10935);
+  ctx.strokeStyle='rgba(255,255,255,.25)';ctx.setLineDash([5*ratio,7*ratio]);ctx.beginPath();ctx.moveTo(px,0);ctx.lineTo(px,h);ctx.stroke();ctx.setLineDash([]);
+  ctx.beginPath();ctx.arc(px,Math.min(py,h*.82),7*ratio,0,Math.PI*2);ctx.fillStyle='#ffb454';ctx.shadowBlur=18*ratio;ctx.shadowColor='#ffb454';ctx.fill();ctx.shadowBlur=0;
+  ctx.fillStyle='rgba(233,247,244,.85)';ctx.font=`${13*ratio}px sans-serif`;ctx.fillText('SURFACE',12*ratio,22*ratio);ctx.fillText('SEAFLOOR PROFILE · ILLUSTRATIVE',12*ratio,h-12*ratio);
+  document.querySelector('#bathyDepthText').textContent=Math.round(d).toLocaleString()+' m';
+  document.querySelector('#bathyPressure').textContent=Math.round(1+d/10.06).toLocaleString()+' atm';
+  const light=d>=1000?0:100*Math.exp(-d/43);
+  document.querySelector('#bathyLight').textContent=light<.1?'~0%':light.toFixed(light<10?1:0)+'%';
+  document.querySelector('#bathyCaption').textContent=depthCaption(d);
+ }
+ depthInput.addEventListener('input',drawBathy);
+ document.querySelector('#randomDive').addEventListener('click',()=>{depthInput.value=Math.round(Math.random()*10935/25)*25;drawBathy()});
+ addEventListener('resize',drawBathy);drawBathy();
+}
+/* ---------- species wiki ---------- */
+
+const speciesData=[
+ {name:'Manta ray',zone:'Sunlight zone · 0–1,000 m',filter:'surface',kind:'Filter-feeding ray',depth:'Usually near the surface; dives deeper to feed',size:'Wingspan can exceed 6 m in large oceanic species',diet:'Zooplankton and small schooling organisms',habitat:'Tropical and temperate open water, reef passages and cleaning stations',adaptation:'Huge cephalic fins funnel plankton-rich water toward the mouth; dark dorsal surfaces can provide countershading.',fact:'Mantas can revisit cleaning stations where small fish remove parasites.',status:'Threatened in many regions by fishing pressure and accidental capture',desc:'A graceful, highly mobile ray that cruises through plankton-rich water with slow, wing-like strokes.',img:'https://commons.wikimedia.org/wiki/Special:FilePath/Manta_birostris-Thailand.jpg'},
+ {name:'Green sea turtle',zone:'Coastal & sunlight zone',filter:'surface',kind:'Marine reptile',depth:'Coastal shallows; can dive much deeper when travelling',size:'Adults commonly reach around 1 m shell length',diet:'Adults mostly seagrass and algae; young turtles are more omnivorous',habitat:'Seagrass beds, lagoons, coral reefs and nesting beaches',adaptation:'Salt glands help remove excess salt; powerful flippers support long migrations.',fact:'Healthy green turtles can help maintain productive seagrass meadows.',status:'Threats include bycatch, habitat loss, plastic and disturbance of nesting beaches',desc:'A long-lived ocean traveller that links feeding grounds and nesting beaches across huge distances.',img:'https://commons.wikimedia.org/wiki/Special:FilePath/Green_sea_turtle.jpg'},
+ {name:'Clownfish',zone:'Reef & sunlight zone',filter:'surface',kind:'Reef fish',depth:'Usually shallow reef habitat',size:'Many species are roughly 7–15 cm long',diet:'Small plankton, algae and leftover food',habitat:'Tropical Indo-Pacific reefs, living among host sea anemones',adaptation:'A protective mucus layer helps many clownfish tolerate anemone stings; social groups have a size-based hierarchy.',fact:'In many clownfish groups, the largest individual is the breeding female.',status:'Reef degradation and collection can affect some populations',desc:'A small reef fish with a famous partnership: it gains shelter among anemone tentacles, while the relationship can benefit both partners.',img:'https://commons.wikimedia.org/wiki/Special:FilePath/Amphiprion_ocellaris.jpg'},
+ {name:'Common bottlenose dolphin',zone:'Sunlight zone',filter:'surface',kind:'Social marine mammal',depth:'Surface waters; dives vary by population and activity',size:'Often around 2–4 m long',diet:'Fish, squid and other prey',habitat:'Coastal bays, estuaries and offshore waters',adaptation:'Echolocation helps locate prey and navigate; social learning supports complex hunting behaviour.',fact:'Dolphins produce clicks and listen for echoes to build information about their surroundings.',status:'Risks include entanglement, pollution, vessel traffic and habitat disturbance',desc:'An intelligent, air-breathing predator that uses sound, teamwork and flexible hunting techniques.',img:'https://commons.wikimedia.org/wiki/Special:FilePath/Tursiops_truncatus_01.jpg'},
+ {name:'Blue whale',zone:'Open ocean · sunlight zone',filter:'surface',kind:'Baleen whale',depth:'Feeds mostly in upper ocean; can dive hundreds of metres',size:'The largest known animal; exceptionally large adults approach 30 m',diet:'Mostly krill, filtered through baleen plates',habitat:'Open ocean, with seasonal feeding and breeding movements',adaptation:'Expandable throat pleats let it engulf huge volumes of prey-rich water.',fact:'Despite its size, a blue whale mainly feeds on small shrimp-like krill.',status:'Recovery continues after historic whaling; ship strikes and noise remain concerns',desc:'A giant filter-feeder whose seasonal migrations connect productive feeding grounds across ocean basins.',img:'https://commons.wikimedia.org/wiki/Special:FilePath/Blue_whale_001.jpg'},
+ {name:'Octopus',zone:'Coastal & reef habitats',filter:'surface',kind:'Cephalopod',depth:'Varies widely by species, from tide pools to deep water',size:'From a few centimetres to several metres across',diet:'Crabs, molluscs, fish and other small animals',habitat:'Rocky reefs, seagrass, coral rubble and the seafloor',adaptation:'Camouflage, flexible arms, chemical sensing and rapid colour change help it hunt and hide.',fact:'An octopus can squeeze through surprisingly small gaps if its beak can fit.',status:'Threats vary by species and include habitat damage and local fishing pressure',desc:'A soft-bodied hunter with remarkable camouflage and dexterity; “octopus” includes many very different species.',img:'https://commons.wikimedia.org/wiki/Special:FilePath/Octopus2.jpg'},
+ {name:'Lanternfish',zone:'Twilight zone · roughly 200–1,000 m',filter:'twilight',kind:'Bioluminescent fish',depth:'Many species spend daytime deep and move upward at night',size:'Usually small, often only a few centimetres long',diet:'Zooplankton and tiny drifting animals',habitat:'Open water across the world’s oceans',adaptation:'Light organs can help with counterillumination, recognition and communication.',fact:'Lanternfish are important prey for larger fish, squid, penguins and marine mammals.',status:'Abundance is difficult to measure precisely; they are central to ocean food webs',desc:'Small, numerous midwater fish that help transfer energy from plankton to larger predators.',img:'https://commons.wikimedia.org/wiki/Special:FilePath/Lanternfish.jpg'},
+ {name:'Swordfish',zone:'Open ocean · twilight dives',filter:'twilight',kind:'Fast pelagic predator',depth:'Can dive into cooler, deeper water and return to the surface',size:'Large adults can exceed 3 m in body length',diet:'Fish and squid',habitat:'Temperate and tropical open ocean',adaptation:'Specialised tissue warms the eyes and brain, supporting sensory performance in cold water.',fact:'The long bill is used in hunting movements, not as a spear carried rigidly forward at all times.',status:'Management and bycatch controls are important for sustainable fisheries',desc:'A powerful open-ocean hunter that moves between warm surface waters and deeper hunting grounds.',img:'https://commons.wikimedia.org/wiki/Special:FilePath/Xiphias_gladius1.jpg'},
+ {name:'Humpback whale',zone:'Open ocean · surface and deep dives',filter:'surface',kind:'Migratory baleen whale',depth:'Often feeds in upper water layers, with deeper dives possible',size:'Often around 12–16 m long',diet:'Krill and small schooling fish',habitat:'Ocean basins with seasonal migration between feeding and breeding areas',adaptation:'Long pectoral fins aid manoeuvring; songs and calls support communication.',fact:'Some populations use coordinated bubble-net feeding to concentrate prey.',status:'Many populations have rebounded after whaling, but entanglement and ship strikes remain threats',desc:'A long-distance migrant known for complex vocalisations, surface displays and cooperative feeding in some populations.',img:'https://commons.wikimedia.org/wiki/Special:FilePath/Humpback_Whale_underwater_shot.jpg'},
+ {name:'Jellyfish',zone:'Surface to deep water',filter:'twilight',kind:'Gelatinous drifter',depth:'Species occur from the surface to deep-sea habitats',size:'Ranges from tiny planktonic forms to large bell diameters',diet:'Zooplankton, fish eggs and small animals; varies by species',habitat:'Open ocean, coastal water and sometimes deep sea',adaptation:'Stinging cells capture prey and deter predators; the body is mostly water.',fact:'Jellyfish are not fish; they are gelatinous animals without a backbone.',status:'Responses to warming, fishing and pollution differ by species and region',desc:'A diverse group of drifting animals whose stinging tentacles and simple body plans work well in the water column.',img:'https://commons.wikimedia.org/wiki/Special:FilePath/Chrysaora_quinquecirrha.jpg'},
+ {name:'Sperm whale',zone:'Midnight dives · 1,000 m and deeper',filter:'deep',kind:'Deep-diving toothed whale',depth:'Commonly dives hundreds of metres; some dives exceed 2,000 m',size:'Large males can reach around 16 m',diet:'Squid, including large deep-water squid, and fish',habitat:'Deep offshore waters across many oceans',adaptation:'Stores oxygen efficiently and tolerates major changes in pressure during long dives.',fact:'Sperm whales use powerful clicks for echolocation in the dark.',status:'Noise, entanglement, ship strikes and historical whaling have affected populations',desc:'A deep-diving predator that searches for squid in dark water and returns to the surface to breathe.',img:'https://commons.wikimedia.org/wiki/Special:FilePath/Physeter_macrocephalus.jpg'},
+ {name:'Anglerfish',zone:'Midnight zone · often 1,000 m+',filter:'deep',kind:'Ambush predator',depth:'Many familiar deep-sea forms live hundreds to thousands of metres down',size:'Varies widely; many deep-sea species are small',diet:'Fish and crustaceans that come within striking distance',habitat:'Deep open water or seafloor, depending on species',adaptation:'In some species, a modified fin ray carries a luminous lure powered by symbiotic microbes.',fact:'“Anglerfish” refers to a broad group; not every species lives in the deep sea or has a glowing lure.',status:'Deep-sea ecology and population trends remain difficult to study',desc:'A sit-and-wait predator famous for a lure that can attract prey in darkness.',img:'https://commons.wikimedia.org/wiki/Special:FilePath/Humpback_anglerfish.png'},
+ {name:'Vampire squid',zone:'Oxygen-minimum & deep water',filter:'deep',kind:'Deep-water cephalopod relative',depth:'Often associated with low-oxygen midwater zones',size:'Usually around 30 cm or less including arms',diet:'Marine snow and small organic particles',habitat:'Deep, low-oxygen water in tropical and temperate oceans',adaptation:'Large eyes, webbed arms and a low-energy lifestyle help it persist where oxygen is scarce.',fact:'Despite its name, it is not a blood-sucking vampire and is not a typical squid.',status:'Poorly sampled habitat means many ecological details remain uncertain',desc:'A dark-red, webbed cephalopod relative adapted to low-oxygen water and a diet of sinking organic material.',img:'https://commons.wikimedia.org/wiki/Special:FilePath/Vampyroteuthis_infernalis.jpg'},
+ {name:'Dumbo octopus',zone:'Abyssal & hadal depths',filter:'deep',kind:'Deep-sea octopus',depth:'Recorded from several hundred metres to over 7,000 m for some species',size:'Often tens of centimetres, depending on species',diet:'Small crustaceans, worms and other seafloor prey',habitat:'Deep seafloor across ocean basins',adaptation:'Ear-like fins provide gentle propulsion; it can hover above soft sediment.',fact:'Its common name comes from the fin-like structures resembling ears.',status:'Deep-sea habitat disturbance and limited data complicate conservation assessment',desc:'A quiet deep-sea octopus that swims with fin-like flaps rather than relying only on jet propulsion.',img:'https://commons.wikimedia.org/wiki/Special:FilePath/Grimpoteuthis.jpg'},
+ {name:'Sea cucumber',zone:'Abyssal plains',filter:'deep',kind:'Seafloor detritivore',depth:'Found from shallow reefs to the deepest ocean trenches',size:'Centimetres to over a metre, depending on species',diet:'Organic particles and microbes in sediment or water',habitat:'Seafloor habitats from reefs to abyssal plains',adaptation:'Many ingest sediment and recycle organic matter, moving nutrients through the seafloor.',fact:'Some deep-sea sea cucumbers are important processors of the “marine snow” reaching the bottom.',status:'Some shallow-water species face harvest pressure; deep-sea impacts are less understood',desc:'A soft-bodied relative of sea stars that helps process sediments and recycle nutrients.',img:'https://commons.wikimedia.org/wiki/Special:FilePath/Sea_cucumber.jpg'},
+ {name:'Giant isopod',zone:'Deep seafloor',filter:'deep',kind:'Deep-sea crustacean',depth:'Often hundreds to more than 2,000 m',size:'Large species can approach 50 cm',diet:'Carrion and other organic matter; feeding can be opportunistic',habitat:'Cold deep seafloor, including continental slopes',adaptation:'A tough exoskeleton and slow metabolism suit a habitat where meals may be scarce.',fact:'It is related to familiar woodlice, though it lives in the sea and can be much larger.',status:'Deep-sea population trends are not well known',desc:'A large scavenging crustacean adapted to cold, dark seafloor habitats and irregular food supplies.',img:'https://commons.wikimedia.org/wiki/Special:FilePath/Giant_isopod.jpg'},
+ {name:'Blobfish',zone:'Deep continental slope',filter:'deep',kind:'Deep-water fish',depth:'Usually hundreds of metres deep',size:'Often under 40 cm',diet:'Small crustaceans and other edible material drifting nearby',habitat:'Deep waters off parts of Australia, Tasmania and New Zealand',adaptation:'A gelatinous body with low-density tissue helps it live under high pressure without a typical gas-filled swim bladder.',fact:'Its famous “droopy” appearance is exaggerated when brought to the surface, where pressure changes distort its body.',status:'Can be caught as bycatch in deep-water fisheries',desc:'A deep-water fish built for life under pressure; surface photos do not show its normal appearance.',img:'https://commons.wikimedia.org/wiki/Special:FilePath/Psychrolutes_marcidus.jpg'},
+ {name:'Gulper eel',zone:'Deep open ocean',filter:'deep',kind:'Deep-sea eel',depth:'Often hundreds to thousands of metres deep',size:'Body length can approach 1 m or more in some species',diet:'Small fish, crustaceans and other prey',habitat:'Deep pelagic water',adaptation:'A huge expandable mouth and stomach can help capture rare meals in a food-scarce environment.',fact:'Its tail can have a luminous tip in some species, though the biology is still not fully understood.',status:'Rarely observed; population data are limited',desc:'A strange-looking deep-sea predator with a disproportionately large mouth for capturing prey.',img:'https://commons.wikimedia.org/wiki/Special:FilePath/Eurypharynx_pelecanoides.jpg'},
+ {name:'Barreleye fish',zone:'Deep twilight & midnight water',filter:'deep',kind:'Transparent-headed fish',depth:'Usually several hundred metres or more',size:'Small, often around 15 cm',diet:'Small drifting animals and prey captured in the water column',habitat:'Deep pelagic water',adaptation:'Its tubular eyes can point upward to detect silhouettes and can rotate toward prey; a transparent head dome protects them.',fact:'The eyes are inside a transparent shield, a feature that is easy to miss in photographs.',status:'Little is known about population trends due to the difficulty of observing it',desc:'A rare deep-water fish with unusual optics for spotting faint silhouettes in dim blue light.',img:'https://commons.wikimedia.org/wiki/Special:FilePath/Macropinna_microstoma.png'},
+ {name:'Atolla jellyfish',zone:'Deep ocean',filter:'deep',kind:'Deep-sea jellyfish',depth:'Often hundreds to thousands of metres',size:'Usually a small bell, commonly a few centimetres wide',diet:'Small drifting animals and zooplankton',habitat:'Open deep ocean',adaptation:'Some species produce a travelling ring of blue light when disturbed, possibly attracting a larger predator to attack the attacker.',fact:'Its light display may act like a burglar alarm in the dark ocean.',status:'Deep-water ecology remains poorly sampled',desc:'A deep-sea jellyfish known for a dramatic bioluminescent display when threatened.',img:'https://commons.wikimedia.org/wiki/Special:FilePath/Atolla_wyvillei.jpg'},
+ {name:'Mariana snailfish',zone:'Hadal trench · around 8,000 m',filter:'hadal',kind:'Hadal-zone fish',depth:'Observed around 8,000 m in the Mariana Trench region',size:'Small to modest fish, often under 30 cm',diet:'Small crustaceans and other trench animals',habitat:'Deep ocean trenches with high pressure and cold temperatures',adaptation:'Flexible tissues and pressure-compatible cell chemistry help it survive conditions that challenge most vertebrates.',fact:'Snailfish have been recorded among the deepest-living fish known to science.',status:'Trench ecosystems are vulnerable to disturbance and contamination; data are limited',desc:'A pale, soft-bodied fish adapted to extreme pressure in the deepest parts of the ocean.',img:'https://commons.wikimedia.org/wiki/Special:FilePath/Pseudoliparis_swirei.jpg'},
+ {name:'Amphipod',zone:'Abyssal & hadal trenches',filter:'hadal',kind:'Small crustacean scavenger',depth:'Some species occur in the deepest known trenches',size:'Many are millimetres to centimetres long; size varies greatly',diet:'Carrion, detritus and other organic material',habitat:'From shallow water to abyssal plains and trenches',adaptation:'Specialised membranes and metabolism help deep-trench species cope with pressure and limited food.',fact:'Amphipods are often among the scavengers attracted to baited deep-sea landers.',status:'Trench ecology and contaminant exposure are active research topics',desc:'A diverse group of shrimp-like crustaceans, including species that thrive in hadal trenches.',img:'https://commons.wikimedia.org/wiki/Special:FilePath/Hirondellea_gigas.jpg'},
+ {name:'Yeti crab',zone:'Deep hydrothermal vents',filter:'deep',kind:'Vent-associated crustacean',depth:'Known from deep hydrothermal vent habitats',size:'Usually several centimetres across',diet:'Microbes grown on setae and other local food sources, varying by species',habitat:'Hydrothermal vents in deep ocean',adaptation:'Hairy appendages can host bacteria; some species may farm microbes by waving them in chemical-rich water.',fact:'Hydrothermal vents support communities powered by chemical energy rather than sunlight.',status:'Sensitive to seabed mining and disturbance around vent fields',desc:'A vent-associated crab linked to ecosystems where microbes use chemical energy from the Earth.',img:'https://commons.wikimedia.org/wiki/Special:FilePath/Kiwa_hirsuta.jpg'},
+ {name:'Hydrothermal vent tubeworm',zone:'Deep hydrothermal vents',filter:'deep',kind:'Chemosynthesis-dependent animal',depth:'At deep-sea hydrothermal vents',size:'Some species grow to well over a metre',diet:'Gets nutrition from symbiotic microbes that use chemicals such as hydrogen sulfide',habitat:'Hydrothermal vent fields on the seafloor',adaptation:'It lacks a conventional digestive tract as an adult and houses bacteria in specialised tissue.',fact:'Its food web can be powered by chemical reactions instead of sunlight.',status:'Vent fields are rare and may be vulnerable to mining and disturbance',desc:'A striking example of life thriving around hot, mineral-rich vents far below the sunlit ocean.',img:'https://commons.wikimedia.org/wiki/Special:FilePath/Riftia_pachyptila.jpg'},
+ {name:'Deep-sea dragonfish',zone:'Midnight zone',filter:'deep',kind:'Bioluminescent predator',depth:'Often hundreds to thousands of metres',size:'Many species are relatively small, commonly under 40 cm',diet:'Fish, crustaceans and other small animals',habitat:'Deep open water',adaptation:'Large teeth, dark bodies and light-producing organs support hunting in darkness; some emit red light.',fact:'Red bioluminescence can be difficult for many deep-sea animals to detect, giving some dragonfish a stealth advantage.',status:'Poorly observed; many species are known from limited samples',desc:'A dark-bodied predator with specialised jaws and light organs for the midnight zone.',img:'https://commons.wikimedia.org/wiki/Special:FilePath/Idiacanthus_atlanticus.jpg'},
+ {name:'Frilled shark',zone:'Deep continental slope',filter:'deep',kind:'Primitive-looking shark',depth:'Usually deep shelf and slope waters',size:'Often around 1.5–2 m',diet:'Squid, fish and other marine animals',habitat:'Deep waters in several ocean regions',adaptation:'A long flexible body and rows of needle-like teeth help grasp slippery prey.',fact:'Its eel-like shape and frilled gill slits give it an unusual appearance compared with familiar sharks.',status:'Rarely encountered; deep-water fishing can create bycatch risks',desc:'A rarely seen deep-water shark with an elongated body and distinctive frilled gill openings.',img:'https://commons.wikimedia.org/wiki/Special:FilePath/Chlamydoselachus_anguineus.jpg'},
+ {name:'Sea pig',zone:'Abyssal seafloor',filter:'deep',kind:'Deep-sea sea cucumber',depth:'Usually several thousand metres deep',size:'Often a few centimetres long',diet:'Organic-rich sediment and marine snow',habitat:'Soft deep-sea plains and slopes',adaptation:'Tube feet help it move across soft sediment; it feeds on organic material that settles from above.',fact:'Sea pigs are sea cucumbers, not pigs, and may gather where food falls to the seafloor.',status:'Deep-sea trawling and habitat disturbance are concerns',desc:'A pale sea cucumber that walks across abyssal mud and feeds on organic material.',img:'https://commons.wikimedia.org/wiki/Special:FilePath/Scotoplanes_globosa.jpg'},
+ {name:'Sixgill shark',zone:'Deep slope & seamounts',filter:'deep',kind:'Deep-water shark',depth:'Often deep, but may rise into shallower water at night',size:'Large species can exceed 4 m',diet:'Fish, squid and carrion',habitat:'Deep continental slopes and seamounts in many oceans',adaptation:'A low-light sensory system and broad diet help it forage in deep habitats.',fact:'Unlike most sharks, sixgill sharks have six pairs of gill slits.',status:'Slow life history can make deep-water sharks vulnerable to fishing pressure',desc:'An ancient-looking deep-water shark with six gill slits and a broad scavenging and predatory diet.',img:'https://commons.wikimedia.org/wiki/Special:FilePath/Hexanchus_griseus.jpg'}
+];
+const speciesGrid=document.querySelector('#speciesGrid');
+let activeSpeciesFilter='all';
+function renderSpecies(q=''){
+ if(!speciesGrid)return;
+ const query=q.trim().toLowerCase();
+ const filtered=speciesData.filter(s=>{
+  const hay=[s.name,s.zone,s.kind,s.depth,s.size,s.diet,s.habitat,s.adaptation,s.fact,s.status,s.desc].join(' ').toLowerCase();
+  const group=activeSpeciesFilter==='all'||s.filter===activeSpeciesFilter;
+  return group&&hay.includes(query);
+ });
+ document.querySelector('#speciesTotal').textContent=speciesData.length;
+ document.querySelector('#speciesResultCount').textContent=`Showing ${filtered.length} of ${speciesData.length} field records`;
+ speciesGrid.innerHTML=filtered.map((s,i)=>`<article class="species-card"><img loading="lazy" src="${s.img}" alt="${s.name}" onerror="this.style.display='none'"><div class="species-copy"><span class="tag">${s.zone}</span><h3>${s.name}</h3><p>${s.desc}</p><div class="species-quick"><span><b>Type</b>${s.kind}</span><span><b>Depth</b>${s.depth}</span></div><details class="species-details"><summary>Open full field record</summary><div class="species-detail-content"><p><b>Typical size:</b> ${s.size}</p><p><b>Diet:</b> ${s.diet}</p><p><b>Habitat:</b> ${s.habitat}</p><p><b>Survival adaptations:</b> ${s.adaptation}</p><p><b>Did you know?</b> ${s.fact}</p><p><b>Conservation & research:</b> ${s.status}</p></div></details></div></article>`).join('')||'<p class="panel">No species matched that search. Try “light”, “squid”, “trench” or clear the habitat filter.</p>';
+}
+if(speciesGrid){
+ renderSpecies();
+ document.querySelector('#speciesSearch').addEventListener('input',e=>renderSpecies(e.target.value));
+ document.querySelectorAll('#speciesFilters [data-filter]').forEach(b=>b.addEventListener('click',()=>{activeSpeciesFilter=b.dataset.filter;document.querySelectorAll('#speciesFilters [data-filter]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));renderSpecies(document.querySelector('#speciesSearch').value)}));
+}
+/* ---------- BlueGuard personal tracker ---------- */
+const bgChecks=[...document.querySelectorAll('#bgActions input[type=checkbox]')];
+function updateBlueGuard(){
+ const n=bgChecks.filter(c=>c.checked).length,score=Math.round(n/bgChecks.length*100);
+ document.querySelector('#bgScore').textContent=score+'%';
+ document.querySelector('#bgCount').textContent=n+' / '+bgChecks.length;
+ document.querySelector('#bgProgress').style.setProperty('--w',score+'%');
+ document.querySelector('#bgStatus').textContent=score===100?'Mission complete — keep the momentum going!':score>=60?'Great progress. Your everyday choices matter.':score>0?'Nice start. Add another action when you can.':'Start with one small action.';
+}
+bgChecks.forEach(c=>c.addEventListener('change',updateBlueGuard));
+/* ---------- impact calculator ---------- */
+const bottleSlider=document.querySelector('#bottles'),peopleSlider=document.querySelector('#people');
+function updateImpact(){
+ const bottles=+bottleSlider.value,people=+peopleSlider.value,total=bottles*52*people;
+ document.querySelector('#bottleCount').textContent=bottles;
+ document.querySelector('#peopleCount').textContent=people;
+ document.querySelector('#impactYear').textContent=total.toLocaleString()+' bottles';
+ document.querySelector('#impactDetail').textContent=`If ${people} ${people===1?'person':'people'} avoid ${bottles} disposable ${bottles===1?'bottle':'bottles'} each week, that is an estimated ${total.toLocaleString()} bottles avoided over 52 weeks.`;
+}
+bottleSlider.addEventListener('input',updateImpact);peopleSlider.addEventListener('input',updateImpact);updateImpact();
+
+</script>
+
+<script>
+/* Separate, keyboard-accessible feature tabs. Existing controls are moved intact so their event handlers keep working. */
+(function buildFeatureTabs(){
+ const config=[
+  {id:'home',label:'The Dive',icon:'◉'},
+  {id:'oceans',label:'Ocean Basins',selector:'#oceans'},
+  {id:'zones',label:'Depth Zones',selector:'#zones'},
+  {id:'bathymetry',label:'Bathymetry Lab',selector:'#bathymetric-lab'},
+  {id:'encyclopedia',label:'Species Wiki',selector:'#species'},
+  {id:'curiosities',label:'Fun Facts',selector:'#fun-facts'},
+  {id:'blueguard',label:'BlueGuard',selector:'#blueguard'},
+  {id:'impact',label:'Impact Calculator',selector:'#impact'},
+  {id:'pressure',label:'Pressure Lab',selector:'#lab'},
+  {id:'ocean-health',label:'Ocean Crisis',selector:'[data-tab-section="ocean-health"]'}
+ ];
+ const body=document.body,hero=document.querySelector('.hero'),facts=document.querySelector('#facts'),factsWrap=facts?.parentElement,main=document.querySelector('main');
+ if(!hero||!main)return;
+ const nav=document.createElement('nav');nav.id='mainNav';nav.setAttribute('aria-label','Explore website sections');
+ nav.innerHTML='<div class="nav-inner"><a class="brandmark" href="#home">THE LONG WAY DOWN</a><div class="nav-tabs" role="tablist" aria-label="Website sections"></div></div>';
+ const stage=document.createElement('div');stage.id='tabStage';
+ hero.insertAdjacentElement('beforebegin',nav);
+ nav.insertAdjacentElement('afterend',stage);
+ const navTabs=nav.querySelector('.nav-tabs'),panels={};
+ config.forEach((c,i)=>{
+  const panel=document.createElement('div');panel.className='tab-panel';panel.id='panel-'+c.id;panel.setAttribute('role','tabpanel');panel.setAttribute('aria-labelledby','tab-'+c.id);panel.hidden=i!==0;stage.append(panel);panels[c.id]=panel;
+  const button=document.createElement('button');button.className='nav-tab';button.id='tab-'+c.id;button.type='button';button.role='tab';button.setAttribute('aria-controls',panel.id);button.setAttribute('aria-selected',String(i===0));button.tabIndex=i===0?0:-1;button.textContent=c.label;button.addEventListener('click',()=>activate(c.id));navTabs.append(button);
+ });
+ function move(el,id){if(el&&panels[id])panels[id].append(el)}
+ move(hero,'home');
+ if(facts){move(facts,'home');}
+ const ocean=document.querySelector('#oceans');move(ocean,'oceans');
+ move(document.querySelector('#zones'),'zones');
+ move(document.querySelector('#bathymetric-lab'),'bathymetry');
+ move(document.querySelector('#species'),'encyclopedia');
+ move(document.querySelector('#fun-facts'),'curiosities');
+ move(document.querySelector('#blueguard'),'blueguard');
+ move(document.querySelector('#impact'),'impact');
+ move(document.querySelector('#lab'),'pressure');
+ const health=[...main.querySelectorAll('section')].find(s=>s.querySelector('h2')?.textContent.trim()==='The ocean is changing');
+ if(health){health.dataset.tabSection='ocean-health';move(health,'ocean-health')}
+ const footerWrap=[...document.querySelectorAll('body > .wrap')].find(el=>el.querySelector('footer'));
+ if(footerWrap){footerWrap.id='siteFooter';move(footerWrap,'home')}
+ // Remove now-empty structural wrappers left by moving their children.
+ if(factsWrap&&factsWrap!==panels.home&&factsWrap.children.length===0)factsWrap.remove();
+ if(main&&main.querySelectorAll('section, #zones').length===0)main.remove();
+ function activate(id){
+  Object.entries(panels).forEach(([key,p])=>{const active=key===id;p.hidden=!active;const b=document.querySelector('#tab-'+key);b.setAttribute('aria-selected',String(active));b.tabIndex=active?0:-1});
+  body.className=body.className.replace(/\bactive-tab-[\w-]+\b/g,'').trim();body.classList.add('active-tab-'+id);
+  // Keep the current feature at the top when changing tabs.
+  window.scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+  if(id==='bathymetry')window.dispatchEvent(new Event('resize'));
+  if(id==='zones'){window.dispatchEvent(new Event('scroll'));}
+  if(id==='encyclopedia')document.querySelector('#speciesSearch')?.focus({preventScroll:true});
+ }
+ navTabs.addEventListener('keydown',e=>{if(!['ArrowRight','ArrowLeft','Home','End'].includes(e.key))return;e.preventDefault();const btns=[...navTabs.querySelectorAll('button')],i=btns.indexOf(document.activeElement);let next=i;if(e.key==='ArrowRight')next=(i+1)%btns.length;if(e.key==='ArrowLeft')next=(i-1+btns.length)%btns.length;if(e.key==='Home')next=0;if(e.key==='End')next=btns.length-1;btns[next].focus();btns[next].click()});
+  document.querySelector('.brandmark').addEventListener('click',e=>{e.preventDefault();activate('home')});
+  activate('home');
+})();
+</script>
+
+</body>
+</html>
